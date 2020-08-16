@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 416e001472c5b2648af6722bd6339b1c, type: 3}
+  m_Name: Spidershot
+  m_EditorClassIdentifier: 
+  _scenarioName: Spidershot
+  _identifier: SPDSHOT
+  _description: Large wide flicks
+  _difficulty: 0
+  _timeAllowed: 60
+  _scene:
+    sceneAsset: {fileID: 102900000, guid: 91d03cbe64794c74d824f258531dd9b6, type: 3}
+    scenePath: Assets/Scenes/Scenarios/Spidershot/Spidershot.unity
+  _map: {fileID: 0}
+  _mapPos: {x: 0, y: 0, z: 0}

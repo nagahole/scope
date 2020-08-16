@@ -1,0 +1,141 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &3729593494709379038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5954044356298772553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2015b52caaa32f4eaf41678fd5e3ee0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _onFireInputReceived:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6875423965845740554}
+        m_MethodName: Shoot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!1001 &7242874597076559004
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 937711088245393171, guid: 6d405fccb88b92a4d9a3c5fad80e185f,
+        type: 3}
+      propertyPath: _onMiss.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_FloatArgument
+      value: -3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1182817542973174263, guid: 6d405fccb88b92a4d9a3c5fad80e185f,
+        type: 3}
+      propertyPath: timeBetweenShots
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 5282588834174580951, guid: 6d405fccb88b92a4d9a3c5fad80e185f,
+        type: 3}
+      propertyPath: audioclipSettingsPairs.Array.data[0].volume
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8368174980440653637, guid: 6d405fccb88b92a4d9a3c5fad80e185f,
+        type: 3}
+      propertyPath: hitsoundMultiplier
+      value: 0.208
+      objectReference: {fileID: 0}
+    - target: {fileID: 8853267234687019552, guid: 6d405fccb88b92a4d9a3c5fad80e185f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8853267234687019552, guid: 6d405fccb88b92a4d9a3c5fad80e185f,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8853267234687019552, guid: 6d405fccb88b92a4d9a3c5fad80e185f,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8853267234687019552, guid: 6d405fccb88b92a4d9a3c5fad80e185f,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8853267234687019552, guid: 6d405fccb88b92a4d9a3c5fad80e185f,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8853267234687019552, guid: 6d405fccb88b92a4d9a3c5fad80e185f,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8853267234687019552, guid: 6d405fccb88b92a4d9a3c5fad80e185f,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8853267234687019552, guid: 6d405fccb88b92a4d9a3c5fad80e185f,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8853267234687019552, guid: 6d405fccb88b92a4d9a3c5fad80e185f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8853267234687019552, guid: 6d405fccb88b92a4d9a3c5fad80e185f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8853267234687019552, guid: 6d405fccb88b92a4d9a3c5fad80e185f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8853267234687019555, guid: 6d405fccb88b92a4d9a3c5fad80e185f,
+        type: 3}
+      propertyPath: frozen
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8853267234687019566, guid: 6d405fccb88b92a4d9a3c5fad80e185f,
+        type: 3}
+      propertyPath: m_Name
+      value: Player Aimtrainer Gun (Tracking)
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 7388754925407445460, guid: 6d405fccb88b92a4d9a3c5fad80e185f, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 6d405fccb88b92a4d9a3c5fad80e185f, type: 3}
+--- !u!1 &5954044356298772553 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3900926352595449045, guid: 6d405fccb88b92a4d9a3c5fad80e185f,
+    type: 3}
+  m_PrefabInstance: {fileID: 7242874597076559004}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6875423965845740554 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4317181524169701526, guid: 6d405fccb88b92a4d9a3c5fad80e185f,
+    type: 3}
+  m_PrefabInstance: {fileID: 7242874597076559004}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5954044356298772553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37babf9c4a91ce64ca6fba9753c05e8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dbe67abf3bb9dc488c308bae7906921, type: 3}
+  m_Name: Scenario Manager
+  m_EditorClassIdentifier: 
+  self: {fileID: 11400000}
+  countdownTime: 3
+  statUIPrefab: {fileID: 8392287026122078654, guid: eebdf981d71247a488bdae3d9f294ad8,
+    type: 3}
+  sessionResultsUIPrefab: {fileID: 7814836605269389094, guid: 1040fdc0276943a488ad7dbb16ba0128,
+    type: 3}
+  countdownUIPrefab: {fileID: 1989913335717628124, guid: ac4bda20c37bed94a964cb965a228821,
+    type: 3}
+  highscoreTrackerObject: {fileID: 11400000, guid: 3eefba1bdbc1e2c4fa185400f2b9545c,
+    type: 2}
+  scenarioTimer: {fileID: 11400000, guid: b1670f6095baa22498017c95d7673d81, type: 2}

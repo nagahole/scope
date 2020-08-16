@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 416e001472c5b2648af6722bd6339b1c, type: 3}
+  m_Name: Ultimate Gridshot
+  m_EditorClassIdentifier: 
+  _scenarioName: ULTIMATE GRIDSHOT
+  _identifier: ULTGRIDSHOT
+  _description: Many targets spawn in one grid
+  _difficulty: 0
+  _timeAllowed: 60
+  _scene:
+    sceneAsset: {fileID: 102900000, guid: 342cce57d15242348a11fb6cab4f6dec, type: 3}
+    scenePath: Assets/Scenes/Scenarios/Ultimate Gridshot/Ultimate Gridshot.unity
+  _map: {fileID: 0}
+  _mapPos: {x: 0, y: 0, z: 0}

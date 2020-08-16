@@ -1,0 +1,184 @@
+﻿#pragma warning disable 0649
+
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+/*
+ * 
+ *  HOW TO USE:
+ *  
+ *  First attach this to any gameobject in the editor, preferably an empty one with no other MonoBehaviours
+ *  
+ *  NOTE: The to access this class, call GenericObjectPooler.sharedInstance
+ * 
+ *  In any scripts that require an object pool, in the Start() of that monobehaviour,
+ *  call CreatePool(prefab gameobject, amount). If you want to cache some sort of other component
+ *  with the gameObject itself as well, you can with a generic type and a third parameter
+ * 
+ *  eg If I want to create a pool with a handle to a sprite renderer, I can call
+ *      CreatePool<SpriteRenderer>(gameObject, amount, gameObject.GetComponent<SpriteRenderer>();
+ * 
+ *  To get the pooled object, do 
+ *      PoolObjectInstance instance = handle.RequestObject(prefab);
+ *      
+ *  Note that this is not the gameobject. The gameobject is stored in instance.gameObject
+ *  
+ *  If you cached some MonoBehaviour along with the gameObject, you can access it with instance.cache
+ *  
+ *  
+ *  
+ *  DESTROYING
+ *  
+ *  To destroy, you will need a handle to the PoolObjectInstance and call Deactivate() from within it
+ *  
+ *  This will set the object inactive, but it will also automatically repool the object.
+ *  
+ *  
+ *  IMPORTANT: THE HANDLE TO THE OBJECTPOOLINSTANCE SHOULD NOT BE LOST, OR ELSE IT WILL PRETTY MUCH BECOME IMPOSSIBLE
+ *  TO USE THE OBJECT AS PART OF THE POOL AGAIN OR TO EVEN ACCESS THE OBJECT (Unless Transform.Find / GameObject.Find is called,
+ *  which is very impractical)
+ *  
+ *  (To always keep a handle onto the ObjectPoolInstance, I would recommend that instead of passing GameObjects, you pass around
+ *  PoolObjectInstances)
+ *  
+ *  WARNING: The object pool will dynamically increase in size automatically in case you need more pooled objects, but newly
+ *  created objects will not have their caches, so any pools that requires caches should be certain to be large enough to not
+ *  dynamically create new objects
+ * 
+ */ 
+
+public class GenericObjectPooler : MonoBehaviour
+{
+    private struct ObjectPool {
+        public Transform parent;
+        public Queue<ObjectPoolInstance> queue;
+
+        public ObjectPool(Transform parent, Queue<ObjectPoolInstance> queue) {
+            this.parent = parent;
+            this.queue = queue;
+        }
+    }
+
+    #region Setup SharedInstance
+    public static GenericObjectPooler sharedInstance;
+
+    private void OnValidate() {
+        sharedInstance = this;
+    }
+    #endregion
+
+    private Transform mainParent;
+    private Dictionary<int, ObjectPool> objectPoolDictionary = new Dictionary<int, ObjectPool>();
+
+    [SerializeField] private string containerName;
+
+    private void Awake() {
+        var obj = GameObject.Find(containerName);
+        if (obj == null) {
+            mainParent = new GameObject(containerName).transform;
+        } else {
+            mainParent = obj.transform;
+        }
+    }
+
+    public void CreatePool<T>(GameObject prefab, int amount, T cache) {
+        int id = prefab.GetInstanceID();
+        if (!objectPoolDictionary.ContainsKey(id)) {
+            Transform poolParent = new GameObject(prefab.name).transform;
+            poolParent.parent = mainParent;
+
+            Queue<ObjectPoolInstance> queue = new Queue<ObjectPoolInstance>();
+
+            for(int i = 0; i < amount; i++) {
+                var newObj = Instantiate(prefab);
+                newObj.transform.parent = poolParent;
+                newObj.SetActive(false);
+
+                var instance = new ObjectPoolInstance(newObj, id, cache);
+
+                queue.Enqueue(instance);
+            }
+
+            ObjectPool objectPool = new ObjectPool(poolParent, queue);
+
+            objectPoolDictionary.Add(id, objectPool);
+        }
+    }
+
+    public void CreatePool(GameObject prefab, int amount) {
+        CreatePool<MonoBehaviour>(prefab, amount, null);
+    }
+
+    public ObjectPoolInstance RequestObject(GameObject prefab, bool active = false) {
+        int id = prefab.GetInstanceID();
+
+        if (objectPoolDictionary.ContainsKey(id)) {
+            var pool = objectPoolDictionary[id];
+            ObjectPoolInstance instance;
+
+            if(pool.queue.Count > 0) {
+                instance = pool.queue.Dequeue();
+            } else {
+                //Newly created objects will not have caches
+                var newObj = Instantiate(prefab);
+                newObj.transform.parent = pool.parent;
+
+                instance = new ObjectPoolInstance(newObj, id);
+            }
+
+            instance.gameObject.SetActive(active);
+
+            return instance;
+
+        } else {
+            Debug.LogError($"{this.GetType().Name} does not contain a pool for {prefab.name} ({id}!)");
+            throw new System.Exception();
+        }
+    }
+
+    
+    public void RepoolObject(ObjectPoolInstance instance) {
+        int id = instance.prefabId;
+        if (objectPoolDictionary.ContainsKey(id)) {
+            objectPoolDictionary[id].queue.Enqueue(instance);
+        } else {
+            Debug.LogError($"{this.GetType().Name} does not contain a pool for ({id}!)");
+            throw new System.Exception();
+        }
+    }
+    
+}
+
+public struct ObjectPoolInstance {
+    public int prefabId;
+    public GameObject gameObject;
+    public dynamic cache; //Optional cache in case an item would be used only for a specific component
+
+    public ObjectPoolInstance(GameObject obj, int prefabId) {
+        this.gameObject = obj;
+        this.prefabId = prefabId;
+        this.cache = null;
+    }
+
+    public ObjectPoolInstance(GameObject obj, int prefabId, dynamic cache) {
+        this.gameObject = obj;
+        this.prefabId = prefabId;
+        this.cache = cache;
+    }
+
+    private void Requeue() {
+        GenericObjectPooler.sharedInstance.RepoolObject(this);
+    }
+
+    public void Deactivate() {
+        gameObject.SetActive(false);
+        Requeue();
+    }
+
+    public static ObjectPoolInstance empty {
+        get {
+            return new ObjectPoolInstance(null, 0);
+        }
+    }
+}

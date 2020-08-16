@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ef8ab51d80ab5e41840ccec06a39356, type: 3}
+  m_Name: Click Timings
+  m_EditorClassIdentifier: 
+  _scenarios:
+  - {fileID: 11400000, guid: da9b5d59745e22348ba2714328cb128f, type: 2}
+  - {fileID: 11400000, guid: adc24ba4ba81f5a46b2c2822f7ea54ed, type: 2}
+  - {fileID: 11400000, guid: a391b9be30cc2aa4d8ee12f4c68957e4, type: 2}
+  - {fileID: 11400000, guid: ad1435f2658aaca4092f8dece4c655ac, type: 2}
+  - {fileID: 11400000, guid: 7f626c5df89da274688594322b103e09, type: 2}

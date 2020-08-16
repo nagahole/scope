@@ -1,0 +1,3 @@
+A mock diagram is included in this folder. Use this at "https://app.diagrams.net/" to load it
+
+An earlier mockup is "https://hatebin.com/aeqowtnazq"
