@@ -5,7 +5,7 @@ using UnityEngine;
 public class SettingsMapper : MonoBehaviour
 {
 
-    protected virtual void Awake() {
+    protected virtual void OnEnable() { //Onenable because ingame ui handler works by activating and deactivating
         GetCaches();
         NagaUnityUtilities.NagaUtils.ExecuteAfterOneFrame(() => {
             MapFromSettings();
