@@ -9,7 +9,8 @@ public class SettingsMapper_Video : SettingsMapper
 {
     [SerializeField] ResolutionDropdown resolutionDropdown; 
     [SerializeField] Toggle fullscreenToggle, vsyncToggle;
-    [SerializeField] SliderInputPair fovSlider;
+    [SerializeField] SliderInputPair fovSlider, fpsCapSlider;
+
 
     Camera mainCamera;
 
@@ -32,6 +33,7 @@ public class SettingsMapper_Video : SettingsMapper
         vsyncToggle.onValueChanged.AddListener((e) => { ApplySettings(); });
         resolutionDropdown.dropdown.onValueChanged.AddListener((e) => { ApplySettings(); });
         fovSlider.onValueChanged.AddListener((e) => { ApplySettings(); });
+        fpsCapSlider.onValueChanged.AddListener((e) => { ApplySettings(); });
     }
 
     public override void MapFromSettings() {
@@ -39,6 +41,7 @@ public class SettingsMapper_Video : SettingsMapper
         fullscreenToggle.isOn = Settings.activeSettings.fullscreen;
         vsyncToggle.isOn = Settings.activeSettings.vsync;
         fovSlider.SetValue(Settings.activeSettings.fov);
+        fpsCapSlider.SetValue(Settings.activeSettings.fpsCap);
         ApplySettings();
     }
 
@@ -47,6 +50,7 @@ public class SettingsMapper_Video : SettingsMapper
         Settings.activeSettings.vsync = vsyncToggle.isOn;
         Settings.activeSettings.fullscreen = fullscreenToggle.isOn;
         Settings.activeSettings.fov = fovSlider.value;
+        Settings.activeSettings.fpsCap = (int) fpsCapSlider.value;
         ApplySettings();
     }
 
@@ -58,5 +62,6 @@ public class SettingsMapper_Video : SettingsMapper
         if(mainCamera != null) {
             mainCamera.fieldOfView = fovSlider.value;
         }
+        Application.targetFrameRate = (int) fpsCapSlider.value;
     }
 }

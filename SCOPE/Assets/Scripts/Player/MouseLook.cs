@@ -82,13 +82,12 @@ public class MouseLook : MonoBehaviour, IMouseIOInfoProvider
 
     private void GetMouseMovement() {
         if (Settings.activeSettings.rawInput) {
-            mouseX = Input.GetAxisRaw("Mouse X") * Settings.activeSettings.mouseSensitivity * Settings.activeSettings.mouseSensitivityAxis.x;
-            mouseY = Input.GetAxisRaw("Mouse Y") * Settings.activeSettings.mouseSensitivity * Settings.activeSettings.mouseSensitivityAxis.y;
+            mouseX = Input.GetAxisRaw("Mouse X") * Settings.activeSettings.effectiveMouseSensitivityX;
+            mouseY = Input.GetAxisRaw("Mouse Y") * Settings.activeSettings.effectiveMouseSensitivityY;
         } else {
-            mouseX = Input.GetAxis("Mouse X") * Settings.activeSettings.mouseSensitivity * Settings.activeSettings.mouseSensitivityAxis.x;
-            mouseY = Input.GetAxis("Mouse Y") * Settings.activeSettings.mouseSensitivity * Settings.activeSettings.mouseSensitivityAxis.y;
+            mouseX = Input.GetAxis("Mouse X") * Settings.activeSettings.effectiveMouseSensitivityX;
+            mouseY = Input.GetAxis("Mouse Y") * Settings.activeSettings.effectiveMouseSensitivityY;
         }
-        
     }
 
     private void CalculateRotations() {

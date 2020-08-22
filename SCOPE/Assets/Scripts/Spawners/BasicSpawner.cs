@@ -4,38 +4,24 @@ using UnityEngine;
 using NagaUnityUtilities;
 
 public class BasicSpawner : MonoBehaviour, ISpawner {
-    [SerializeField] ObjectPoolInstance objectToSpawn;
-    [SerializeField] Vector3 targetScale = new Vector3(1, 1, 1);
-    [SerializeField] float spaceBetweenSpawns = 1f;
-    [SerializeField] int maxAttemptsInSpawning = 15;
-    [SerializeField] LayerMask targetLayerMask;
+    [SerializeField] private ObjectPoolInstance objectToSpawn;
+    [SerializeField] private Vector3 targetScale = new Vector3(1, 1, 1);
+    [SerializeField] private float spaceBetweenSpawns = 1f;
+    [SerializeField] private int maxAttemptsInSpawning = 15;
+    [SerializeField] private LayerMask targetLayerMask;
     [Space]
     [SerializeField] [Tooltip("If there are multiple, they will be cycled through, in the order of their index")]
-    MonoBehaviour[] positionGeneratorScripts;
+    private MonoBehaviour[] positionGeneratorScripts;
 
     private IPositionGenerator[] positionGenerators;
 
     private int positionGenIndex;
 
-    private void OnValidate() {
-        if (GetComponents<ISpawner>().Length > 1)
-            Debug.LogError($"{gameObject} has more than one {typeof(ISpawner).Name}");
-
-        positionGenerators = new IPositionGenerator[positionGeneratorScripts.Length];
-        for (int i = 0; i < positionGeneratorScripts.Length; i++) {
-            positionGenerators[i] = positionGeneratorScripts[i].GetComponent<IPositionGenerator>();
-            if (positionGenerators[i] == null) {
-                Debug.LogError($"{gameObject}'s position generator object {positionGeneratorScripts[i].gameObject}" +
-                    $"doesn't implement {typeof(IPositionGenerator).Name}");
-            }
-        }
-    }
-
     private void Awake() {
         positionGenIndex = 0;
         positionGenerators = new IPositionGenerator[positionGeneratorScripts.Length];
         for(int i = 0; i < positionGeneratorScripts.Length; i++) {
-            positionGenerators[i] = positionGeneratorScripts[i].GetComponent<IPositionGenerator>();
+            positionGenerators[i] = positionGeneratorScripts[i] as IPositionGenerator;
         }
     }
 
@@ -43,22 +29,31 @@ public class BasicSpawner : MonoBehaviour, ISpawner {
         GenericObjectPooler.CreatePool(objectToSpawn, amountToPool);
     }
 
-    public (bool successful, IHealth health) TryUntilSuccessfulSpawn() {
+    public (bool successful, IHealth health) TryUntilSuccessfulSpawn(params Vector3[] blacklistedPositions) {
         (bool successful, IHealth health) retVal = (false, null);
         int tries = 0;
         while (!retVal.successful && tries < maxAttemptsInSpawning) {
             tries++;
-            retVal = TrySpawn();
+            retVal = TrySpawn(blacklistedPositions);
         }
         return retVal;
     }
 
-    private (bool successful, IHealth health) TrySpawn() {
-        Vector3 pos = NextPos();
+    private (bool successful, IHealth health) TrySpawn(params Vector3[] blacklistedPositions) {
+        Vector3 newPosition = NextPos();
         Collider[] results = new Collider[1];
-        Physics.OverlapSphereNonAlloc(pos, spaceBetweenSpawns / 2f, results, targetLayerMask);
+        Physics.OverlapSphereNonAlloc(newPosition, spaceBetweenSpawns / 2f, results, targetLayerMask);
         if (results[0] == null) { //none nearby
-            return (true, Spawn(pos));
+
+            for(int i = 0; i < blacklistedPositions.Length; i++) {
+                float distance = (blacklistedPositions[i] - newPosition).sqrMagnitude;
+
+                if (distance <= spaceBetweenSpawns) {
+                    return (false, null);
+                }
+            }
+
+            return (true, Spawn(newPosition));
         }
         return (false, null);
     }

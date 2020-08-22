@@ -7,10 +7,16 @@ using MEC;
 public class AutoKill : MonoBehaviour
 {
     [SerializeField] private float secondsBeforeDeath;
+
+    private CoroutineHandle coroutine;
     // Start is called before the first frame update
     void OnEnable()
     {
-        Timing.RunCoroutine(_AutoKill().CancelWith(gameObject));
+        coroutine = Timing.RunCoroutine(_AutoKill());
+    }
+
+    private void OnDisable() {
+        Timing.KillCoroutines(coroutine);
     }
 
     private IEnumerator<float> _AutoKill() {

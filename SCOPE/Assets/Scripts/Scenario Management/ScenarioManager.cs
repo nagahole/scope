@@ -144,6 +144,7 @@ namespace ScenarioManagement
 
             LoadScenario(scenario, () => {
                 BaseOnScenarioLoaded(scenario);
+                session.SetPlayMode(ScenarioPlayMode.Untimed);
                 UntimedOnScenarioLoaded();
             });
         }
@@ -171,6 +172,8 @@ namespace ScenarioManagement
                 ReplayScenarioTimed(session.timeAllowed);
             } else if (session.playMode == ScenarioPlayMode.TimeTrial) {
                 ReplayScenarioTimeTrial(session.amountToKill);
+            } else if (session.playMode == ScenarioPlayMode.Untimed){
+                ReplayScenarioUntimed();
             } else {
                 Debug.LogError("Error in ReplayScenario. Is it because some playmode isn't accounted for?");
             }

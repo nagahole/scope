@@ -51,7 +51,7 @@ PrefabInstance:
     - target: {fileID: 8368174980440653637, guid: 6d405fccb88b92a4d9a3c5fad80e185f,
         type: 3}
       propertyPath: hitsoundMultiplier
-      value: 0.208
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 8853267234687019552, guid: 6d405fccb88b92a4d9a3c5fad80e185f,
         type: 3}

@@ -6,35 +6,41 @@ using MEC;
 using System.Collections.Generic;
 using UnityEngine.Events;
 
-public class XAtATimeSpawnInvoker : MonoBehaviour, ISpawnInvoker {
+public class XAtATimeSpawnInvoker : SpawnInvoker {
     [Header("CUSTOMISATIONS")]
     [SerializeField] int maxAtATime = 5;
-    [SerializeField] MonoBehaviour[] spawnerObjects;
-
-    private ISpawner[] spawners;
+    
+    [SerializeField] private bool spawnAwayFromLastKill = false;
     
     private bool doSpawn;
     [SerializeField] [ReadOnly] private int existing = 0;
 
-    private int spawnIndex;
+    private Vector3 lastKillPosition = new Vector3(9999, 9999, 9999);
 
-    private void Awake() {
-        spawnIndex = 0;
-        spawners = new ISpawner[spawnerObjects.Length];
-        for(int i = 0; i < spawnerObjects.Length; i++) {
-            spawners[i] = spawnerObjects[i].GetComponent<ISpawner>();
-            if(spawners[i] == null) {
-                Debug.LogError($"SpawnerObjects' {spawnerObjects[i].gameObject} does not implement {typeof(ISpawner).Name}");
-            }
-        }
+    protected override void Awake() {
+        base.Awake();
+
+        ISpawner[] spawners = spawnerGetter.GetSpawners();
         for (int i = 0; i < spawners.Length; i++) {
-            spawners[i].CreatePool(maxAtATime + 1);
+            spawners[i].CreatePool((maxAtATime / spawners.Length) + 1);
         }
     }
 
-    public void StartSpawning() {
+    public override void StartSpawning() {
         doSpawn = true;
         SpawnToMax();
+    }
+
+    public override void StopSpawning() {
+        doSpawn = false;
+    }
+
+    private void OnDie(DeathInformation e) {
+        lastKillPosition = e.deathPosition;
+        existing--;
+        if (doSpawn) {
+            SpawnToMax();
+        }
     }
 
     private void SpawnToMax() {
@@ -42,14 +48,19 @@ public class XAtATimeSpawnInvoker : MonoBehaviour, ISpawnInvoker {
     }
 
     private IEnumerator<float> _SpawnToMax() {
-        yield return Timing.WaitForOneFrame;
         int a = maxAtATime - existing;
         for (int i = 0; i < a; i++) {
             yield return Timing.WaitForOneFrame;
-            if (existing >= maxAtATime)
+            if (existing >= maxAtATime || !doSpawn)
                 break;
 
-            var results = spawners[spawnIndex++ % spawners.Length].TryUntilSuccessfulSpawn();
+            (bool successful, IHealth health) results;
+
+            if (spawnAwayFromLastKill) {
+                results = spawnerGetter.MoveNext().TryUntilSuccessfulSpawn(lastKillPosition);
+            } else {
+                results = spawnerGetter.MoveNext().TryUntilSuccessfulSpawn();
+            }
 
             if (results.successful) {
                 existing++;
@@ -60,35 +71,4 @@ public class XAtATimeSpawnInvoker : MonoBehaviour, ISpawnInvoker {
             }
         }
     }
-
-    private void OnDie() {
-        existing--;
-        SpawnToMax();
-    }
-
-    public void StopSpawning() {
-        doSpawn = false;
-    }
-
-    private bool TrySpawn() {
-        if (doSpawn) {
-            
-        }
-        return false;
-    }
-
-    private void Spawn(Vector3 pos) {
-        existing++;
-        
-    }
-
-    private void OnSpawnDeath() {
-        existing--;
-        if (doSpawn) {
-            SpawnToMax();
-        }
-    }
-
-    
-    
 }

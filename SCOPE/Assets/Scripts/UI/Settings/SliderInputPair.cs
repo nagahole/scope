@@ -48,6 +48,22 @@ public class SliderInputPair : MonoBehaviour
         _onValueChanged.Invoke(this.value);
     }
 
+    /// <summary>
+    /// Note: This does not change the value to match the range
+    /// </summary>
+    /// <param name="min"></param>
+    /// <param name="max"></param>
+    public void SetRange(float min, float max) {
+        range.x = min;
+        range.y = max;
+        slider.minValue = min;
+        slider.maxValue = max;
+    }
+
+    public void SetRange(Vector2 range) {
+        SetRange(range.x, range.y);
+    }
+
     //For text input field
     public void SetValue(string s) {
         float val = 0;

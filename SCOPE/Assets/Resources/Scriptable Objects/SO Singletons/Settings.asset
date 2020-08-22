@@ -13,32 +13,36 @@ MonoBehaviour:
   m_Name: Settings
   m_EditorClassIdentifier: 
   defaultSettingPreset:
-    mouseSensitivity: 1
-    mouseSensitivityAxis: {x: 1, y: 1}
+    sensitivityPreset: {fileID: 11400000, guid: c1700271259381c4a9ae45d83ecfc5e5,
+      type: 2}
+    mouseSensitivity: {x: 1, y: 1}
+    lockXandY: 1
     rawInput: 1
     resolution: {x: 1920, y: 1080}
     fullscreen: 1
     vsync: 0
     fov: 90
+    fpsCap: 5000
     masterVolume: 1
     sfxVolume: 1
     musicVolume: 0.5
-    hitSound: {fileID: 8300000, guid: 15d1d54e861d9d8459ef07aa71198495, type: 3}
     playHitsound: 1
   defaultSettingsIndex: 0
   defaultNumberOfPresets: 1
   settingsData:
     settingsPresets:
-    - mouseSensitivity: 30
-      mouseSensitivityAxis: {x: 10, y: 10}
-      rawInput: 0
-      resolution: {x: 640, y: 480}
-      fullscreen: 0
+    - sensitivityPreset: {fileID: 11400000, guid: c1700271259381c4a9ae45d83ecfc5e5,
+        type: 2}
+      mouseSensitivity: {x: 0.66, y: 0.66}
+      lockXandY: 1
+      rawInput: 1
+      resolution: {x: 1920, y: 1080}
+      fullscreen: 1
       vsync: 0
       fov: 90
-      masterVolume: 0
+      fpsCap: 0
+      masterVolume: 1
       sfxVolume: 1
       musicVolume: 0.5
-      hitSound: {fileID: 8300000, guid: 15d1d54e861d9d8459ef07aa71198495, type: 3}
       playHitsound: 1
     currentSettingsIndex: 0

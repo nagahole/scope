@@ -14,6 +14,7 @@ public interface IHighscoreWrapper {
     bool RegisterScore(ScenarioSession session, float score, ScoreMode scoreMode);
     (bool exists, float score) TryGetHighscore(ScenarioSession session);
     (bool exists, float score) TryGetHighscore(string id);
+    void Purge();
 }
 [CreateAssetMenu(fileName = "new HighscoreTracker", menuName="ScriptableObjects/HighscoreTracker")]
 public class HighscoreTracker : ScriptableObject, IHighscoreWrapper
@@ -37,9 +38,7 @@ public class HighscoreTracker : ScriptableObject, IHighscoreWrapper
     private BinaryFormatter formatter = new BinaryFormatter();
 
     private void OnEnable() {
-        
         filePath = Application.persistentDataPath + RELATIVE_FILE_PATH;
-        Debug.Log($"LOADING ALL {filePath}");
         LoadAll();
     }
 
@@ -86,6 +85,12 @@ public class HighscoreTracker : ScriptableObject, IHighscoreWrapper
         } else {
             return (true, data.highScores[id]);
         }
+    }
+
+    public void Purge() {
+        Debug.Log("Purging Highscores");
+        data = new HighscoreData(new Dictionary<string, float>());
+        SaveAll();
     }
 
     private void SaveAll() {

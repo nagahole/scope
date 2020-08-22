@@ -39,13 +39,13 @@ public class BasicHealth : Health {
     }
 
     private void Die() {
-        onDie.Invoke();
+        onDie.Invoke(new DeathInformation(transform.position));
         gameObject.SetActive(false);
     }
 
     [ContextMenu("Silently Kill")]
     public override void SilentKill() {
-        onSilenceDie.Invoke();
+        onSilenceDie.Invoke(new DeathInformation(transform.position));
         health = 0;
         gameObject.SetActive(false);
     }

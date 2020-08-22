@@ -11,8 +11,7 @@ GameObject:
   - component: {fileID: 1692542821569039264}
   - component: {fileID: 1692542821569039267}
   - component: {fileID: 53977206050990780}
-  - component: {fileID: 6672813134200550119}
-  - component: {fileID: 6894126710022692879}
+  - component: {fileID: 9146804024694122074}
   m_Layer: 0
   m_Name: Spawner
   m_TagString: Untagged
@@ -47,8 +46,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxAtATime: 6
-  spawnerObjects:
-  - {fileID: 6894126710022692879}
+  spawnerGetterObject: {fileID: 9146804024694122074}
+  spawnAwayFromLastKill: 0
   existing: 0
 --- !u!114 &53977206050990780
 MonoBehaviour:
@@ -62,7 +61,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57a6d75228cbe8045b63d43b13152734, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6672813134200550119
+--- !u!114 &9146804024694122074
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -71,33 +70,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1692542821569039265}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e20d633eaf53d4342ad1a17998f0f4f4, type: 3}
+  m_Script: {fileID: 11500000, guid: 9cdb8fe4ea1ccac44abfadc7363f63a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  center: {x: 0, y: 10, z: 12.94}
-  size: {x: 28, y: 18, z: 0}
-  relativeToTransform: 0
---- !u!114 &6894126710022692879
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1692542821569039265}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5c11893f05a6af478b7e59806c1feb0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectToSpawn: {fileID: 2452816246857634406, guid: 3d4c674858987eb4f9f4e7d8315cb530,
-    type: 3}
-  targetScale: {x: 1, y: 1, z: 1}
-  spaceBetweenSpawns: 1
-  maxAttemptsInSpawning: 15
-  targetLayerMask:
-    serializedVersion: 2
-    m_Bits: 1024
-  positionGeneratorScript: {fileID: 6672813134200550119}
+  spawnerObjects:
+  - {fileID: 1692542821569039267}
 --- !u!1 &1692542822506326126
 GameObject:
   m_ObjectHideFlags: 0

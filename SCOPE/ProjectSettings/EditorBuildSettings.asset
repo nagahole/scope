@@ -32,4 +32,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Scenarios/Ultimate Gridshot/Ultimate Gridshot.unity
     guid: 342cce57d15242348a11fb6cab4f6dec
+  - enabled: 1
+    path: Assets/Scenes/Scenarios/Microflicks/Microflicks.unity
+    guid: 2c7965b438084064fbc967b1c895fb9c
+  - enabled: 1
+    path: Assets/Scenes/Scenarios/Grow and shrink/Grow and shrink.unity
+    guid: 59dcc0e4a378c664f9ba09c948e63d03
   m_configObjects: {}

@@ -4,9 +4,13 @@ using UnityEngine;
 
 [System.Serializable]
 public class SettingsPreset {
+    
+    public float effectiveMouseSensitivityX => mouseSensitivity.x * sensitivityPreset.sensitivityMultiplier;
+    public float effectiveMouseSensitivityY => mouseSensitivity.y * sensitivityPreset.sensitivityMultiplier;
     [Header("Game")]
-    public float mouseSensitivity;
-    public Vector2 mouseSensitivityAxis;
+    public SensitivityPreset sensitivityPreset;
+    public Vector2 mouseSensitivity;
+    public bool lockXandY;
     public bool rawInput;
 
     [Header("Video")]
@@ -15,6 +19,7 @@ public class SettingsPreset {
     public bool vsync;
 
     public float fov;
+    public int fpsCap;
 
     [Header("Audio")]
     public float masterVolume;
@@ -24,7 +29,6 @@ public class SettingsPreset {
     public float musicVolume;
 
     [Space]
-    public AudioClip hitSound;
 
     public bool playHitsound;
 

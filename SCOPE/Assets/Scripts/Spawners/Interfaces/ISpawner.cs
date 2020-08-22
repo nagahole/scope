@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface ISpawner
 {
-    (bool successful, IHealth health) TryUntilSuccessfulSpawn();
+    (bool successful, IHealth health) TryUntilSuccessfulSpawn(params Vector3[] blacklistedPositions);
     void CreatePool(int amountToPool);
 }

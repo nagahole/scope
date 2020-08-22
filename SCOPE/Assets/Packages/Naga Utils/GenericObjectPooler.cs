@@ -53,7 +53,6 @@ namespace NagaUnityUtilities
         }
 
         private static void FindMainParent() {
-            Debug.Log("Finding main parent...");
             var obj = GameObject.Find(containerName);
             if (obj == null) {
                 mainParent = new GameObject(containerName).transform;
@@ -65,7 +64,7 @@ namespace NagaUnityUtilities
         public static void CreatePool(ObjectPoolInstance prefab, int amount) {
             int id = prefab.GetInstanceID();
             if (!objectPoolDictionary.ContainsKey(id)) {
-                Debug.Log($"Creating pool of {prefab.name} ({id})");
+                //Debug.Log($"Creating pool of {prefab.name} ({id})");
                 Transform poolParent = new GameObject(prefab.name).transform;
                 poolParent.parent = mainParent;
 
@@ -108,7 +107,7 @@ namespace NagaUnityUtilities
         /// <returns></returns>
         public static ObjectPoolInstance RequestObject(ObjectPoolInstance prefab, bool returnActive) {
             int id = prefab.GetInstanceID();
-            Debug.Log($"Requesting pool of {prefab.name} ({id})");
+            //Debug.Log($"Requesting pool of {prefab.name} ({id})");
 
             if (objectPoolDictionary.ContainsKey(id)) {
                 var pool = objectPoolDictionary[id];

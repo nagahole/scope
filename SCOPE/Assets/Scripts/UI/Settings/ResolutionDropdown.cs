@@ -16,7 +16,7 @@ public class ResolutionDropdown : MonoBehaviour
     
 
     // Start is called before the first frame update
-    void Awake()
+    private void Awake()
     {
         resolutions = Screen.resolutions;
         dropdown.ClearOptions();

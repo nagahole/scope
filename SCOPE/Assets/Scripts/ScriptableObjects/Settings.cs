@@ -33,7 +33,7 @@ public class Settings : ScriptableObject, ICanBeSingleton, IInitializable {
     [Header("Runtime Values")]
     [SerializeField] private SettingsData settingsData;
 
-    private const string RELATIVE_FILE_PATH = "/settings.gay";
+    private const string RELATIVE_FILE_PATH = "/settings.megagay";
     private string filePath;
 
     public static Settings instance => SOSingleton<Settings>.sharedInstance; //Bruh - Added this purely to type less when accessing settings
@@ -48,7 +48,6 @@ public class Settings : ScriptableObject, ICanBeSingleton, IInitializable {
 
     public void Initialize() {
         filePath = Application.persistentDataPath + RELATIVE_FILE_PATH;
-        Debug.Log(filePath);
         Load();
     }
 

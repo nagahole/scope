@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8062c22a580a17448d4f7fc10c2df1c, type: 3}
-  m_Name: ScenarioSelectionManager
+  m_Script: {fileID: 11500000, guid: 07d829d7be313be4383436af7b0c28de, type: 3}
+  m_Name: Insurgency
   m_EditorClassIdentifier: 
-  selectionsPrefab: {fileID: 1309037299897971448, guid: caa0854836d951441ae3d02c243bc380,
-    type: 3}
+  _displayName: Insurgency
+  _sensitivityMultiplier: 0.441
+  _range: {x: 0, y: 8}

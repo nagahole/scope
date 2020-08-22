@@ -62,6 +62,13 @@ public class ScenarioSelectionOptions : MonoBehaviour
         Hide();
     }
 
+    private void OnEnable() { //called whenever going from main menu into scenario selection
+        if (scenarioInfo != null) {
+            Debug.Log("ASDASDSADASD");
+            FetchHighscore();
+        }
+    }
+
     private void Update() {
         if (Input.GetMouseButtonUp(0) && !cursorIn) {
             Hide();

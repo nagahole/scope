@@ -14,6 +14,10 @@ public class SettingsMapper : MonoBehaviour
         });
     }
 
+    private void OnDisable() {
+        MapToSettings();
+    }
+
     protected virtual void Start() {
 
     }
