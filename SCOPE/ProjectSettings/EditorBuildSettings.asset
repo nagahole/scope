@@ -38,4 +38,19 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Scenarios/Grow and shrink/Grow and shrink.unity
     guid: 59dcc0e4a378c664f9ba09c948e63d03
+  - enabled: 1
+    path: Assets/Scenes/Scenarios/Quickshot/Quickshot.unity
+    guid: ca6193ee6ddd28b4195e3a77fe0afff5
+  - enabled: 1
+    path: Assets/Scenes/Scenarios/Random Flick/Random Flick.unity
+    guid: 49f58d80bfec45f4baa67ba20c5dbcc9
+  - enabled: 1
+    path: Assets/Scenes/Scenarios/Random Flick (Hard)/Random Flick - Hard.unity
+    guid: fe5fed0f1d7d09c46a47b9a1c333eb30
+  - enabled: 1
+    path: Assets/Scenes/Scenarios/1wall6target - Small/1wall6target - Small.unity
+    guid: 78b9c666b5f17114e8bbfac0a81b41ac
+  - enabled: 1
+    path: Assets/Scenes/Scenarios/Pigeon/Pigeon.unity
+    guid: 475f5c603ef347d4db32521f27c98991
   m_configObjects: {}

@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _displayName: Overwatch
   _sensitivityMultiplier: 1.47
-  _range: {x: 0, y: 3}
+  _range: {x: 0, y: 12}

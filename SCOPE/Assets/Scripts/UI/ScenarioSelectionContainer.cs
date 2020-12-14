@@ -26,12 +26,12 @@ public class ScenarioSelectionContainer : MonoBehaviour
         for(int i = 0; i < scenarioContainer.scenarios.Length; i++) {
             CreateElement(scenarioContainer.scenarios[i]);
         }
-        Timing.RunCoroutine(_FixSize(), Segment.SlowUpdate);
+        AdjustHeight();
+        //Timing.RunCoroutine(_FixSize(), Segment.SlowUpdate);
     }
 
     private IEnumerator<float> _FixSize() {
         yield return Timing.WaitForOneFrame;
-        AdjustHeight();
         while (true) {
             if (targetTransform == null)
                 yield break;

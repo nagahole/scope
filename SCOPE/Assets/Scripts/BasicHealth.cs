@@ -10,7 +10,7 @@ public class BasicHealth : Health {
     [SerializeField] private float maxHealth;
     [SerializeField] private float health;
 
-    public override void MaxHealth() {
+    public override void FillToMaxHealth() {
         health = maxHealth;
     }
 
@@ -48,5 +48,13 @@ public class BasicHealth : Health {
         onSilenceDie.Invoke(new DeathInformation(transform.position));
         health = 0;
         gameObject.SetActive(false);
+    }
+
+    public override float GetMaxHealth() {
+        return maxHealth;
+    }
+
+    public override float GetHealth() {
+        return health;
     }
 }

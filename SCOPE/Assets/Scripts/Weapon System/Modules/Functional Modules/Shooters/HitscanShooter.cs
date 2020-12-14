@@ -68,6 +68,7 @@ public class HitscanShooter : Shooter {
         if (Physics.Raycast(start, direction, out hitInfo, range, layermask)) { //Hits something
             end = hitInfo.point;
             IHealth health = hitInfo.collider.GetComponent<IHealth>();
+            Debug.Log(hitInfo.collider);
             if (health != null) {
                 hitHealthComponent = true;
                 health.Damage(damage);
@@ -75,6 +76,8 @@ public class HitscanShooter : Shooter {
         } else {
             end = NagaUtils.GetPointAlongDirection(start, direction, range);
         }
+
+        Debug.DrawLine(start, end, Color.white, 0.4f);
 
         onHitscanShoot.Invoke((new ShootInfo[] { new ShootInfo(start, end, hitInfo, hitHealthComponent) }));
     }

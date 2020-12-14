@@ -7,7 +7,7 @@ public class ContinuousSpawnInvoker : SpawnInvoker
 {
     [Header("CUSTOMISATIONS")]
     [SerializeField] private int maxAtATime = 5;
-    [SerializeField] private float timeBetwenSpawns = 1;
+    [SerializeField] private Vector2 timeBetwenSpawns = new Vector2(1,1);
 
     private CoroutineHandle spawnCoroutine;
 
@@ -20,6 +20,10 @@ public class ContinuousSpawnInvoker : SpawnInvoker
         for (int i = 0; i < spawners.Length; i++) {
             spawners[i].CreatePool((maxAtATime / spawners.Length) + 1);
         }
+    }
+
+    private void OnValidate() {
+        timeBetwenSpawns.y = Mathf.Max(timeBetwenSpawns.x, timeBetwenSpawns.y);
     }
 
     public override void StartSpawning() {
@@ -53,7 +57,7 @@ public class ContinuousSpawnInvoker : SpawnInvoker
             }
 
 
-            yield return Timing.WaitForSeconds(timeBetwenSpawns);
+            yield return Timing.WaitForSeconds(Random.Range(timeBetwenSpawns.x, timeBetwenSpawns.y));
         }
     }
 }

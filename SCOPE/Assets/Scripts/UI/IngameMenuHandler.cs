@@ -9,7 +9,7 @@ using UnityEngine.Events;
 [CreateAssetMenu(fileName ="new IngameMenuHandler", menuName ="ScriptableObjects/Singletons/IngameMenuHandler")]
 public class IngameMenuHandler : ScriptableObject, IInitializable, ICanBeSingleton
 {
-    [SerializeField] KeyCode hotkey = KeyCode.Escape;
+    [SerializeField] KeyCode hotkey = KeyCode.Escape, restartHotkey = KeyCode.F2;
     [SerializeField] IngameMenuCommands menuPrefab;
 
     private IngameMenuCommands menu;
@@ -31,6 +31,10 @@ public class IngameMenuHandler : ScriptableObject, IInitializable, ICanBeSinglet
         if (Input.GetKeyDown(hotkey) && SceneManager.GetActiveScene().path != SOSingleton<KeySceneReferences>.sharedInstance.menuPath
             && SOSingleton<ScenarioManager>.sharedInstance.scenarioState != ScenarioState.Results) { //need to change this incase this gets more complicated TODO
             menu.ToggleMenu();
+        }
+
+        if(Input.GetKeyDown(restartHotkey) && SOSingleton<ScenarioManager>.sharedInstance.IsPlaying()) {
+            menu.Replay();
         }
     }
 }

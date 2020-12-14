@@ -4,16 +4,16 @@ using UnityEngine;
 using NagaUnityUtilities;
 
 public class BasicSpawner : MonoBehaviour, ISpawner {
-    [SerializeField] private ObjectPoolInstance objectToSpawn;
-    [SerializeField] private Vector3 targetScale = new Vector3(1, 1, 1);
-    [SerializeField] private float spaceBetweenSpawns = 1f;
-    [SerializeField] private int maxAttemptsInSpawning = 15;
-    [SerializeField] private LayerMask targetLayerMask;
+    [SerializeField] protected ObjectPoolInstance objectToSpawn;
+    [SerializeField] protected Vector3 targetScale = new Vector3(1, 1, 1);
+    [SerializeField] protected float spaceBetweenSpawns = 1f;
+    [SerializeField] protected int maxAttemptsInSpawning = 15;
+    [SerializeField] protected LayerMask targetLayerMask;
     [Space]
     [SerializeField] [Tooltip("If there are multiple, they will be cycled through, in the order of their index")]
-    private MonoBehaviour[] positionGeneratorScripts;
+    protected MonoBehaviour[] positionGeneratorScripts;
 
-    private IPositionGenerator[] positionGenerators;
+    protected IPositionGenerator[] positionGenerators;
 
     private int positionGenIndex;
 
@@ -58,20 +58,20 @@ public class BasicSpawner : MonoBehaviour, ISpawner {
         return (false, null);
     }
 
-    private Vector3 NextPos() {
+    protected Vector3 NextPos() {
         if (positionGenIndex >= positionGenerators.Length)
             positionGenIndex = 0;
         positionGenIndex++;
         return positionGenerators[positionGenIndex - 1].GeneratePosition();
     }
 
-    private IHealth Spawn(Vector3 pos) {
+    protected virtual IHealth Spawn(Vector3 pos) {
         var obj = GenericObjectPooler.RequestObject(objectToSpawn, false);
         obj.transform.localScale = targetScale;
         obj.transform.position = pos;
         obj.gameObject.SetActive(true);
         IHealth health = obj.gameObject.GetComponent<IHealth>();
-        health.MaxHealth();
+        health.FillToMaxHealth();
         Debug.DrawLine(pos, pos + Vector3.up * 10, Color.red, 1f);
         return health;
     }

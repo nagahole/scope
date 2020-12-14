@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -6979,7 +6979,7 @@ PrefabInstance:
     - target: {fileID: 2993855607110279156, guid: 4efaa1672fc60de4e908576f221968b0,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 15
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 2993855607110279156, guid: 4efaa1672fc60de4e908576f221968b0,
         type: 3}
@@ -7004,7 +7004,7 @@ PrefabInstance:
     - target: {fileID: 2993855607110279156, guid: 4efaa1672fc60de4e908576f221968b0,
         type: 3}
       propertyPath: m_text
-      value: Rest Highscores
+      value: Reset Highscores
       objectReference: {fileID: 0}
     - target: {fileID: 2993855607332616038, guid: 4efaa1672fc60de4e908576f221968b0,
         type: 3}
@@ -7671,7 +7671,7 @@ PrefabInstance:
     - target: {fileID: 2678371649265259301, guid: fb52dba670f5d4b42a4ec7d8aea49cad,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.000037382055
+      value: 0.0000021087872
       objectReference: {fileID: 0}
     - target: {fileID: 2678371649265259301, guid: fb52dba670f5d4b42a4ec7d8aea49cad,
         type: 3}
@@ -8959,7 +8959,7 @@ PrefabInstance:
     - target: {fileID: 2678371649265259301, guid: fb52dba670f5d4b42a4ec7d8aea49cad,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.000037382055
+      value: 0.0000021087872
       objectReference: {fileID: 0}
     - target: {fileID: 2678371649265259301, guid: fb52dba670f5d4b42a4ec7d8aea49cad,
         type: 3}
@@ -9640,7 +9640,7 @@ PrefabInstance:
     - target: {fileID: 2678371649265259301, guid: fb52dba670f5d4b42a4ec7d8aea49cad,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.000037382055
+      value: 0.0000021087872
       objectReference: {fileID: 0}
     - target: {fileID: 2678371649265259301, guid: fb52dba670f5d4b42a4ec7d8aea49cad,
         type: 3}

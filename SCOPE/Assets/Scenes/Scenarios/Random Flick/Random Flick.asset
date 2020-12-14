@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 416e001472c5b2648af6722bd6339b1c, type: 3}
+  m_Name: Random Flick
+  m_EditorClassIdentifier: 
+  _scenarioName: Random Flick
+  _identifier: RNDFLICK
+  _description: Targets spawn anywhere on screen after another, and you have to react
+    quick to shoot them
+  _difficulty: 0
+  _scoreMode: 0
+  _timePresets: 0f0000001e0000003c00000078000000
+  _defaultTimePresetIndex: 2
+  _amountToKillPresets: 0a000000190000003200000064000000
+  _defaultAmountToKillPreset: 2
+  _scene:
+    sceneAsset: {fileID: 102900000, guid: 49f58d80bfec45f4baa67ba20c5dbcc9, type: 3}
+    scenePath: Assets/Scenes/Scenarios/Random Flick/Random Flick.unity
+  _map: {fileID: 0}
+  _mapPos: {x: 0, y: 0, z: 0}

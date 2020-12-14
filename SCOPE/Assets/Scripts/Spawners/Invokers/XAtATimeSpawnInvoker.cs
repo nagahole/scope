@@ -8,7 +8,8 @@ using UnityEngine.Events;
 
 public class XAtATimeSpawnInvoker : SpawnInvoker {
     [Header("CUSTOMISATIONS")]
-    [SerializeField] int maxAtATime = 5;
+    [SerializeField] private int maxAtATime = 5;
+    [SerializeField] private Vector2 timeBetweenInvokes = new Vector2(0,0);
     
     [SerializeField] private bool spawnAwayFromLastKill = false;
     
@@ -26,6 +27,10 @@ public class XAtATimeSpawnInvoker : SpawnInvoker {
         }
     }
 
+    private void OnValidate() {
+        timeBetweenInvokes.y = Mathf.Max(timeBetweenInvokes.x, timeBetweenInvokes.y);
+    }
+
     public override void StartSpawning() {
         doSpawn = true;
         SpawnToMax();
@@ -39,8 +44,17 @@ public class XAtATimeSpawnInvoker : SpawnInvoker {
         lastKillPosition = e.deathPosition;
         existing--;
         if (doSpawn) {
-            SpawnToMax();
+            if(timeBetweenInvokes.y == 0) {
+                SpawnToMax();
+            } else {
+                Timing.RunCoroutine(_WaitThenSpawn().CancelWith(gameObject));
+            }
         }
+    }
+
+    private IEnumerator<float> _WaitThenSpawn() {
+        yield return Timing.WaitForSeconds(Random.Range(timeBetweenInvokes.x, timeBetweenInvokes.y));
+        SpawnToMax();
     }
 
     private void SpawnToMax() {
@@ -70,5 +84,9 @@ public class XAtATimeSpawnInvoker : SpawnInvoker {
                 results.health.onSilenceDie.AddListener(OnDie);
             }
         }
+    }
+
+    public void SetA(string identifier) {
+        
     }
 }

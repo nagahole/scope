@@ -25,8 +25,10 @@ public interface IHealth
     DamageTakenEvent onDamageTaken { get; }
     void Damage(float damage);
     void Heal(float healing);
-    void MaxHealth();
+    void FillToMaxHealth();
     void SilentKill();
+    float GetHealth();
+    float GetMaxHealth();
 }
 
 public abstract class Health : MonoBehaviour, IHealth {
@@ -49,8 +51,10 @@ public abstract class Health : MonoBehaviour, IHealth {
         private set { _onDamageTaken = value; }
     }
 
-    public abstract void MaxHealth();
+    public abstract void FillToMaxHealth();
     public abstract void Damage(float damage);
     public abstract void Heal(float healing);
     public abstract void SilentKill();
+    public abstract float GetMaxHealth();
+    public abstract float GetHealth();
 }

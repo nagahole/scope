@@ -433,6 +433,10 @@ namespace ScenarioManagement
                 PlayerInfoHandler.sharedInstance.GetInventoryService().EnableWeapon();
             }
         }
+
+        public bool IsPlaying() {
+            return scenarioState == ScenarioState.Playing || scenarioState == ScenarioState.Untimed;
+        }
     }
 
 }
